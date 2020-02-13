@@ -7,6 +7,9 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * An example test command
+ */
 class TestCommand extends Command
 {
     // The name of the command (the part after "bin/console")

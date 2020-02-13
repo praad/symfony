@@ -33,7 +33,9 @@
         "symfony/polyfill-intl-idn": "^1.10",
         "symfony/polyfill-intl-normalizer": "~1.0",
         "symfony/polyfill-mbstring": "~1.0",
-        "symfony/polyfill-php73": "^1.11"
+        "symfony/polyfill-php73": "^1.11",
+        "symfony/orm-pack": "dev-master",
+        "symfony/monolog-bundle": "^3.0@dev"
     },
     "replace": {
         "symfony/asset": "self.version",
@@ -125,7 +127,8 @@
         "twig/cssinliner-extra": "^2.12",
         "twig/inky-extra": "^2.12",
         "twig/markdown-extra": "^2.12",
-        "phpunit/phpunit": "^9.1@dev"
+        "phpunit/phpunit": "^9.1@dev",
+        "symfony/maker-bundle": "^1.0@dev"
     },
     "conflict": {
         "masterminds/html5": "<2.6",

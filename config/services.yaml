@@ -15,3 +15,9 @@ services:
         exclude: '../src/{Symfony,DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
     # ...
+
+    # explicitly configure the Database Logger service
+    App\Logger\DoctrineHandler:
+        public: true
+        arguments:
+            - "@doctrine.orm.entity_manager"

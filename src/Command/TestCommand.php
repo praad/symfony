@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Util\Calculator;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -24,11 +25,16 @@ class TestCommand extends Command
     private $calculator = null;
 
     /**
+     * @var LoggerInterface|null
+     */
+    private $logger = null;
+
+    /**
      * TestCommand constructor.
      *
      * @param Calculator|null $calculator
      */
-    public function __construct(Calculator $calculator = null)
+    public function __construct(Calculator $calculator = null, LoggerInterface $logger)
     {
         parent::__construct();
 
@@ -36,6 +42,8 @@ class TestCommand extends Command
         // then set your own properties. That wouldn't work in this case
         // because configure() needs the properties set in this constructor
         $this->calculator = $calculator;
+
+        $this->logger = $logger;
     }
 
     protected function configure()
@@ -59,7 +67,10 @@ class TestCommand extends Command
     {
         echo "Hello World! \n";
 
-        echo '10 + 10 = ' . $this->calculator->add(10,10) . "\n";
+        $result = $this->calculator->add(10,10);
+        echo "10 + 10 = $result \n";
+
+        $this->logger->info("10+10 = $result");
 
         return 0;
     }

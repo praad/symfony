@@ -135,6 +135,7 @@
     },
     "autoload": {
         "psr-4": {
+            "App\\": "src/",
             "Symfony\\Bridge\\Doctrine\\": "src/Symfony/Bridge/Doctrine/",
             "Symfony\\Bridge\\Monolog\\": "src/Symfony/Bridge/Monolog/",
             "Symfony\\Bridge\\ProxyManager\\": "src/Symfony/Bridge/ProxyManager/",

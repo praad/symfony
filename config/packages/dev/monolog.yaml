@@ -1,11 +1,6 @@
 # config/packages/dev/monolog.yaml
 monolog:
   handlers:
-    doctrine:
-      type: service
-      level: info
-      id: App\Logger\DoctrineHandler
-
     # this "file_log" key could be anything
     file_log:
       type: stream
@@ -13,8 +8,10 @@ monolog:
       path: "%kernel.logs_dir%/%kernel.environment%.log"
       # log *all* messages (debug is lowest level)
       level: debug
+      channels: ['!doctrine']
 
     syslog_handler:
       type: syslog
       # log error-level messages and higher
       level: error
+      channels: ['!doctrine']

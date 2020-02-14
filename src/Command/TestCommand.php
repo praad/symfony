@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Util\Calculator;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -32,9 +33,11 @@ class TestCommand extends Command
     /**
      * TestCommand constructor.
      *
-     * @param Calculator|null $calculator
+     * @param Calculator|null        $calculator
+     * @param LoggerInterface        $doctrineLogger
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(Calculator $calculator = null, LoggerInterface $logger)
+    public function __construct(Calculator $calculator = null, LoggerInterface $doctrineLogger, EntityManagerInterface $entityManager)
     {
         parent::__construct();
 
@@ -43,7 +46,9 @@ class TestCommand extends Command
         // because configure() needs the properties set in this constructor
         $this->calculator = $calculator;
 
-        $this->logger = $logger;
+        $this->logger = $doctrineLogger;
+
+        $this->entityManager = $entityManager;
     }
 
     protected function configure()
@@ -65,12 +70,13 @@ class TestCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        echo "Hello World! \n";
+        $output->writeln('Hello World!');
 
         $result = $this->calculator->add(10,10);
-        echo "10 + 10 = $result \n";
 
-        $this->logger->info("10+10 = $result");
+        $output->writeln("10 + 10 = $result");
+
+        $this->logger->info("10 + 10 = $result");
 
         return 0;
     }
